@@ -1,5 +1,7 @@
 import 'package:aligner_app/constants.dart';
+import 'package:aligner_app/providers/auth_provider.dart';
 import 'package:aligner_app/screens/home/home_screen.dart';
+import 'package:aligner_app/screens/log_in/log_in_screen.dart';
 import 'package:aligner_app/screens/tabs/home_tabs_screen.dart';
 import 'package:aligner_app/size_config.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +13,11 @@ class SplashScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacementNamed(HomeTabsScreen.routeName);
+      if (AuthProvider.currentUser != null) {
+        Navigator.of(context).pushReplacementNamed(HomeTabsScreen.routeName);
+      } else {
+        Navigator.of(context).pushReplacementNamed(LogInScreen.routeName);
+      }
     });
     SizeConfig.init(context);
     return Container(

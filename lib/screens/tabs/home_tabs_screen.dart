@@ -1,11 +1,11 @@
-import 'package:aligner_app/screens/home/components/home_body.dart';
-import 'package:aligner_app/screens/messanger/messanger.dart';
 import 'package:aligner_app/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../constants.dart';
+import '../../widgets/tab_widgets.dart';
 import '../home/home_screen.dart';
+import '../messenger/messanger.dart';
 
 class HomeTabsScreen extends StatefulWidget {
   const HomeTabsScreen({Key? key}) : super(key: key);
@@ -53,11 +53,15 @@ class _HomeTabsScreenState extends State<HomeTabsScreen>
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-            label: 'Home',
-            icon: Container(),
-          ),
-          BottomNavigationBarItem(label: 'Messenger', icon: Container()),
-          BottomNavigationBarItem(label: 'Profile', icon: Container()),
+              label: 'Home', icon: Container(), activeIcon: BlackCircleDot()),
+          BottomNavigationBarItem(
+              label: 'Messenger',
+              icon: Container(),
+              activeIcon: BlackCircleDot()),
+          BottomNavigationBarItem(
+              label: 'Profile',
+              icon: Container(),
+              activeIcon: BlackCircleDot()),
         ],
         onTap: onTabClicked,
         currentIndex: currentTab,
