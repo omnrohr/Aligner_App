@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import './constants.dart';
 
@@ -14,7 +15,8 @@ ThemeData lightThemeData(BuildContext context) {
     appBarTheme: appBarTheme.copyWith(
         iconTheme: const IconThemeData(color: kLightPrimaryActiveColor),
         backgroundColor: kLightBackGroundColor,
-        titleTextStyle: const TextStyle(
+        titleTextStyle: TextStyle(
+          fontFamily: GoogleFonts.poppins().fontFamily,
           fontSize: 18,
           fontWeight: FontWeight.w500,
           color: kLightPrimaryActiveColor,
@@ -22,14 +24,17 @@ ThemeData lightThemeData(BuildContext context) {
     iconTheme: const IconThemeData(color: kLightPrimaryActiveColor),
     // textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
     //     .apply(bodyColor: kLightPrimaryColor),
-    textTheme: const TextTheme(
-      subtitle1: TextStyle(color: kLightPrimaryActiveColor),
+    textTheme: TextTheme(
+      subtitle1: TextStyle(
+          color: kLightPrimaryActiveColor,
+          fontFamily: GoogleFonts.poppins().fontFamily),
       headline5: TextStyle(
           color: kLightPrimaryActiveColor,
           fontSize: 30,
           fontWeight: FontWeight.bold),
       bodyText1: TextStyle(
         color: kLightPrimaryActiveColor,
+        fontFamily: GoogleFonts.poppins().fontFamily,
         fontSize: 20,
       ),
       bodyText2: TextStyle(color: kLightPrimaryActiveColor),
@@ -65,14 +70,22 @@ ThemeData darkThemeData(BuildContext context) {
     iconTheme: const IconThemeData(color: kDarkPrimaryColor),
     // textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
     //     .apply(bodyColor: kDarkPrimaryColor),
-    textTheme: const TextTheme(
-      subtitle1: TextStyle(color: kDarkPrimaryColor),
-      headline5: TextStyle(color: kDarkPrimaryColor, fontSize: 34),
+    textTheme: TextTheme(
+      subtitle1: TextStyle(
+          color: kDarkPrimaryColor,
+          fontFamily: GoogleFonts.poppins().fontFamily),
+      headline5: TextStyle(
+          color: kDarkPrimaryColor,
+          fontSize: 34,
+          fontFamily: GoogleFonts.poppins().fontFamily),
       bodyText1: TextStyle(
+        fontFamily: GoogleFonts.poppins().fontFamily,
         color: kDarkPrimaryColor,
         fontSize: 20,
       ),
-      bodyText2: TextStyle(color: kDarkPrimaryColor),
+      bodyText2: TextStyle(
+          color: kDarkPrimaryColor,
+          fontFamily: GoogleFonts.poppins().fontFamily),
     ),
     colorScheme: const ColorScheme.dark().copyWith(
       primary: kDarkPrimaryColor,

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
+const kSplashBGC1 = Color(0xFF17181c);
+const kSplashBGC2 = Color(0xFF383d43);
+const kRightBGM = Color(0xFFc2c7cd);
+const kLeftBGM = Color(0xFFf2f3f7);
+
 const kLightPrimaryColor = Colors.black54;
 const kLightPrimaryActiveColor = Colors.black87;
 const kDarkPrimaryColor = Colors.white70;
 const kSecondaryColor = Color(0xFFFE9901);
-const kLightBackGroundColor = Colors.white;
+const kLightBackGroundColor = Color(0xFFf9f9f9);
 const kWarningColor = Color(0xFFF3BB1C);
 const kBarGreenColor = Colors.green;
 const kMeanBarColor = Colors.blueAccent;
