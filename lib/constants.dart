@@ -4,6 +4,7 @@ const kSplashBGC1 = Color(0xFF17181c);
 const kSplashBGC2 = Color(0xFF383d43);
 const kRightBGM = Color(0xFFc2c7cd);
 const kLeftBGM = Color(0xFFf2f3f7);
+const kPurpleColor = Colors.purple;
 
 const kLightPrimaryColor = Colors.black54;
 const kLightPrimaryActiveColor = Colors.black87;

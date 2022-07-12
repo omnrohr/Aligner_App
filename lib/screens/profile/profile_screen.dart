@@ -1,3 +1,6 @@
+import 'package:aligner_app/providers/auth_provider.dart';
+import 'package:aligner_app/screens/log_in/log_in_screen.dart';
+import 'package:aligner_app/widgets/tab_widgets.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -5,8 +8,15 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('profile screen'),
+    return ContainerShadow(
+      child: Center(
+        child: TextButton(
+          onPressed: () => AuthProvider.signUserOut().then((value) =>
+              Navigator.of(context)
+                  .pushReplacementNamed(LogInScreen.routeName)),
+          child: Text('Sign out'),
+        ),
+      ),
     );
   }
 }

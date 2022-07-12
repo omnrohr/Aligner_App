@@ -37,3 +37,31 @@ String? validatePassword(String? input) {
     return null;
   }
 }
+
+String? validateConfirmedPassword(String? password, String? confirmPassword) {
+  if (password != confirmPassword) {
+    return 'Password and confirm password not match';
+  }
+  return null;
+}
+
+String? validatePhoneNumber(String? input) {
+  if (input!.trim().isEmpty) {
+    return '* Required';
+  } else if (input.length != 10) {
+    return 'should be 10 numbers "07XXXXXXXX".';
+  } else if (!input.startsWith('07')) {
+    return 'Please provide a mobile number';
+  } else if (!phoneNumberValidation.hasMatch(input)) {
+    return 'please numbers only';
+  }
+  return null;
+}
+
+String? validateName(String? input) {
+  if (input!.isEmpty) {
+    return '*Required';
+  } else {
+    return null;
+  }
+}

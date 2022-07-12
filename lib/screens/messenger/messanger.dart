@@ -1,3 +1,4 @@
+import 'package:aligner_app/widgets/tab_widgets.dart';
 import 'package:flutter/material.dart';
 
 class MessengerScreen extends StatelessWidget {
@@ -5,8 +6,10 @@ class MessengerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('messanger'),
+    return ContainerShadow(
+      child: Center(
+        child: Text('messanger'),
+      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:aligner_app/providers/auth_provider.dart';
+import 'package:aligner_app/screens/tabs/home_tabs_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -21,19 +22,23 @@ class _LogInFormState extends State<LogInForm> {
   bool hidden = true;
   bool isLoading = false;
 
-  void onFormSave() {
+  void onFormSave() async {
     FocusManager.instance.primaryFocus?.unfocus();
-    setState(() {
-      isLoading = true;
-    });
-    if (!_formKey.currentState!.validate()) {
-      Fluttertoast.showToast(
-          msg: 'Something went wrong... please try again later');
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      var usercred =
+          await AuthProvider.signInWithEmailAndPassword(email, password);
+      if (usercred?.user?.uid != null) {
+        Future.delayed(
+            Duration(seconds: 3),
+            () => Navigator.of(context)
+                .pushReplacementNamed(HomeTabsScreen.routeName));
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+      }
     }
-    _formKey.currentState!.save();
-    AuthProvider.signInWithEmailAndPassword(email, password).catchError((err) {
-      Fluttertoast.showToast(msg: err.toString());
-    });
   }
 
   @override
@@ -76,12 +81,19 @@ class _LogInFormState extends State<LogInForm> {
             const SizedBox(
               height: kDefaultPadding * 2,
             ),
-            RoundedButton(
-                text: 'Login',
-                press: onFormSave,
-                fontsSize: 24,
+            if (!isLoading)
+              RoundedButton(
+                  text: 'Login',
+                  press: onFormSave,
+                  fontsSize: 24,
+                  height: 50,
+                  border: 10),
+            if (isLoading)
+              RoundedWithCircleProgress(
+                press: () {},
                 height: 50,
-                border: 10),
+                border: 10,
+              ),
           ],
         ));
   }
