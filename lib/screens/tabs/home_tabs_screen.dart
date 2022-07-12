@@ -1,6 +1,5 @@
 import 'package:aligner_app/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../constants.dart';
 import '../../widgets/tab_widgets.dart';
@@ -68,12 +67,8 @@ class _HomeTabsScreenState extends State<HomeTabsScreen>
         backgroundColor: Colors.white,
         elevation: 0,
         selectedLabelStyle: TextStyle(
-            color: kSplashBGC1,
-            fontWeight: FontWeight.bold,
-            fontFamily: GoogleFonts.poppins().fontFamily,
-            fontSize: 15),
-        unselectedLabelStyle: TextStyle(
-            fontSize: 14, fontFamily: GoogleFonts.poppins().fontFamily),
+            color: kSplashBGC1, fontWeight: FontWeight.bold, fontSize: 15),
+        unselectedLabelStyle: TextStyle(fontSize: 14),
         unselectedItemColor: Colors.black,
       ),
     );

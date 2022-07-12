@@ -5,7 +5,6 @@ import 'package:aligner_app/screens/log_in/log_in_screen.dart';
 import 'package:aligner_app/screens/tabs/home_tabs_screen.dart';
 import 'package:aligner_app/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SplashScreenBody extends StatelessWidget {
   const SplashScreenBody({Key? key}) : super(key: key);
@@ -41,16 +40,16 @@ class SplashScreenBody extends StatelessWidget {
             ),
             Stack(
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: kDefaultPadding * 2,
                       vertical: kDefaultPadding / 2),
                   child: Text(
                     'Aligner',
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 45,
-                        fontFamily: GoogleFonts.poppins().fontFamily),
+                      color: Colors.white,
+                      fontSize: 45,
+                    ),
                   ),
                 ),
                 Positioned(
