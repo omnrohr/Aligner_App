@@ -44,9 +44,22 @@ class _SignUpFormState extends State<SignUpForm> {
         });
         return;
       }
+      if (birthDate == null) {
+        Fluttertoast.showToast(msg: 'Please check your birth date');
+        setState(() {
+          isLoading = false;
+        });
+        return;
+      }
       _formKey.currentState!.save();
-      var userCred =
-          await AuthProvider.signUpWithEmailAndPassword(email, password);
+      var userCred = await AuthProvider.signUpWithEmailAndPassword(
+          email: email,
+          password: password,
+          fName: fName,
+          lName: lName,
+          phoneNumber: phoneNumber,
+          nickName: nickName,
+          birthDate: birthDate!);
       if (userCred?.user?.uid != null) {
         Future.delayed(
             Duration(seconds: 3),
@@ -60,6 +73,24 @@ class _SignUpFormState extends State<SignUpForm> {
     }
   }
 
+  void _presentDatePicker() {
+    // showDatePicker is a pre-made funtion of Flutter
+    showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(1950),
+            lastDate: DateTime.now())
+        .then((pickedDate) {
+      // Check if no date is selected
+      if (pickedDate == null) {
+        return;
+      }
+      setState(() {
+        birthDate = pickedDate;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -67,8 +98,9 @@ class _SignUpFormState extends State<SignUpForm> {
         child: Column(
           children: [
             TextFormField(
+                style: TextStyle(color: kSplashBGC3),
                 keyboardType: TextInputType.emailAddress,
-                onSaved: (newValue) => email = newValue!,
+                onSaved: (newValue) => email = newValue!.trim(),
                 validator: validateEmail,
                 showCursor: false,
                 decoration:
@@ -77,8 +109,9 @@ class _SignUpFormState extends State<SignUpForm> {
               height: kDefaultPadding,
             ),
             TextFormField(
+                style: TextStyle(color: kSplashBGC3),
                 keyboardType: TextInputType.text,
-                onSaved: (newValue) => fName = newValue!,
+                onSaved: (newValue) => fName = newValue!.trim(),
                 validator: validateName,
                 showCursor: false,
                 decoration:
@@ -87,8 +120,9 @@ class _SignUpFormState extends State<SignUpForm> {
               height: kDefaultPadding,
             ),
             TextFormField(
+                style: TextStyle(color: kSplashBGC3),
                 keyboardType: TextInputType.text,
-                onSaved: (newValue) => lName = newValue!,
+                onSaved: (newValue) => lName = newValue!.trim(),
                 validator: validateName,
                 showCursor: false,
                 decoration: globInputDecoration('your last name', 'Last Name')),
@@ -96,8 +130,9 @@ class _SignUpFormState extends State<SignUpForm> {
               height: kDefaultPadding,
             ),
             TextFormField(
+                style: TextStyle(color: kSplashBGC3),
                 keyboardType: TextInputType.text,
-                onSaved: (newValue) => nickName = newValue!,
+                onSaved: (newValue) => nickName = newValue!.trim(),
                 validator: validateName,
                 showCursor: false,
                 decoration: globInputDecoration('your nick name', 'Nick Name')),
@@ -105,9 +140,10 @@ class _SignUpFormState extends State<SignUpForm> {
               height: kDefaultPadding,
             ),
             TextFormField(
+              style: TextStyle(color: kSplashBGC3),
               onChanged: (value) => password = value,
               keyboardType: TextInputType.text,
-              onSaved: (newValue) => password = newValue!,
+              onSaved: (newValue) => password = newValue!.trim(),
               validator: validatePassword,
               obscureText: hidden,
               showCursor: false,
@@ -130,9 +166,10 @@ class _SignUpFormState extends State<SignUpForm> {
               height: kDefaultPadding,
             ),
             TextFormField(
-              onChanged: (value) => confirmPassword = value,
+              style: TextStyle(color: kSplashBGC3),
+              onChanged: (value) => confirmPassword = value.trim(),
               keyboardType: TextInputType.text,
-              onSaved: (newValue) => confirmPassword = newValue!,
+              onSaved: (newValue) => confirmPassword = newValue!.trim(),
               validator: (input) => validateConfirmedPassword(password, input),
               obscureText: confHidden,
               showCursor: false,
@@ -153,13 +190,44 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
             ),
             TextFormField(
+                style: TextStyle(color: kSplashBGC3),
                 keyboardType: TextInputType.number,
-                onSaved: (newValue) => phoneNumber = newValue!,
+                onSaved: (newValue) => phoneNumber = newValue!.trim(),
                 validator: validatePhoneNumber,
                 showCursor: false,
                 decoration: globInputDecoration('07XXXXXXXX', 'Phone Number')),
             const SizedBox(
               height: kDefaultPadding,
+            ),
+            InkWell(
+              onTap: _presentDatePicker,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (birthDate == null)
+                    Row(
+                      children: [
+                        Text(
+                          '* Click to select your birth date:',
+                          style: TextStyle(color: kSplashBGC3),
+                        ),
+                        SizedBox(
+                          width: kDefaultPadding / 2,
+                        ),
+                        Icon(
+                          Icons.date_range_rounded,
+                          size: 30,
+                          color: kSplashBGC3,
+                        ),
+                      ],
+                    ),
+                  if (birthDate != null)
+                    Text(
+                      " your birth date: ${birthDate.toString().replaceRange(10, null, '')}",
+                      style: TextStyle(color: kSplashBGC3),
+                    ),
+                ],
+              ),
             ),
             const SizedBox(
               height: kDefaultPadding * 2,
@@ -193,7 +261,10 @@ class _SignUpFormState extends State<SignUpForm> {
                         agreeToTerms = value!;
                       });
                     }),
-                const Text('Agree our terms and conditions'),
+                Text(
+                  'Agree our terms and conditions',
+                  style: TextStyle(color: kSplashBGC3),
+                ),
               ],
             ),
             const SizedBox(

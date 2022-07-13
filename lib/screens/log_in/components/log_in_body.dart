@@ -30,12 +30,18 @@ class LogInBody extends StatelessWidget {
         const Spacer(
           flex: 1,
         ),
-        const Text("Don't fave an account?"),
+        Text(
+          "Don't fave an account?",
+          style: TextStyle(color: kSplashBGC3),
+        ),
         TextButton(
             onPressed: () {
               Navigator.of(context).pushNamed(SignUp.routeName);
             },
-            child: const Text('Sign Up')),
+            child: Text(
+              'Sign Up',
+              style: TextStyle(color: kSplashBGC3),
+            )),
       ],
     );
   }

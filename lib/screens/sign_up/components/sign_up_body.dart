@@ -25,7 +25,11 @@ class SignUpBody extends StatelessWidget {
                 const SizedBox(
                   height: kDefaultPadding * 2,
                 ),
-                Text('Sign up', style: Theme.of(context).textTheme.headline5),
+                Text('Sign up',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline5!
+                        .copyWith(color: kSplashBGC3)),
                 const SignUpForm(),
               ],
             ),

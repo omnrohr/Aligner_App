@@ -48,6 +48,7 @@ class _LogInFormState extends State<LogInForm> {
         child: Column(
           children: [
             TextFormField(
+                style: TextStyle(color: kSplashBGC3),
                 keyboardType: TextInputType.emailAddress,
                 onSaved: (newValue) => email = newValue!,
                 validator: validateEmail,
@@ -58,6 +59,7 @@ class _LogInFormState extends State<LogInForm> {
               height: kDefaultPadding,
             ),
             TextFormField(
+              style: TextStyle(color: kSplashBGC3),
               keyboardType: TextInputType.text,
               onSaved: (newValue) => password = newValue!,
               validator: validatePassword,

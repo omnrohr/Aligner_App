@@ -10,6 +10,6 @@ class NotificationsPage extends StatefulWidget {
 class MessagesPageState extends State<NotificationsPage> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('notifications'));
+    return Center(child: Text('Comming Soon'));
   }
 }

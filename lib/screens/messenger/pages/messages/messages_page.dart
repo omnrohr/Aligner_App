@@ -1,5 +1,6 @@
 import 'package:aligner_app/helpers/messages_helper.dart';
 import 'package:aligner_app/models/user_model.dart';
+import 'package:aligner_app/screens/messenger/pages/chat_screen/chat_screen.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
@@ -17,8 +18,8 @@ class MessagesPage extends StatelessWidget {
     var date = Helpers.randomDate();
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(
-          child: StoriesBox(),
+        const SliverToBoxAdapter(
+          child: const StoriesBox(),
         ),
         SliverList(
           delegate: SliverChildBuilderDelegate((context, i) {
@@ -89,7 +90,7 @@ class StoriesBox extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text('Stories'),
+        const Text('Doctors'),
         Container(
           color: Theme.of(context).cardColor,
           height: 90,
@@ -114,74 +115,81 @@ class _MessageTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding:
-          const EdgeInsets.symmetric(horizontal: kDefaultPadding, vertical: 2),
-      child: Container(
-        decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: Colors.grey, width: 0.2))),
-        child: Row(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(8),
-              child: Avatar.medium(url: messageModel.imageUrl),
-            ),
-            Expanded(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  messageModel.senderName,
-                  style:
-                      TextStyle(wordSpacing: 1.5, fontWeight: FontWeight.bold),
-                  maxLines: 1,
-                  softWrap: true,
-                ),
-                Text(
-                  messageModel.message,
-                  maxLines: 1,
-                  softWrap: true,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(color: Colors.blueAccent, fontSize: 12),
-                ),
-              ],
-            )),
-            Column(
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(ChatScreen.route(messageModel));
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+            horizontal: kDefaultPadding, vertical: 2),
+        child: Container(
+          decoration: const BoxDecoration(
+              border:
+                  Border(bottom: BorderSide(color: Colors.grey, width: 0.2))),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Avatar.medium(url: messageModel.imageUrl),
+              ),
+              Expanded(
+                  child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    height: 4,
+                  Text(
+                    messageModel.senderName,
+                    style: const TextStyle(
+                        wordSpacing: 1.5, fontWeight: FontWeight.bold),
+                    maxLines: 1,
+                    softWrap: true,
                   ),
                   Text(
-                    messageModel.dateMessage.toUpperCase(),
-                    style: const TextStyle(
-                      fontSize: 11,
-                      letterSpacing: -0.2,
-                      fontWeight: FontWeight.w600,
+                    messageModel.message,
+                    maxLines: 1,
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
+                    style:
+                        const TextStyle(color: Colors.blueAccent, fontSize: 12),
+                  ),
+                ],
+              )),
+              Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    const SizedBox(
+                      height: 4,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Container(
-                    width: 18,
-                    height: 18,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.blueAccent),
-                    child: const Center(
-                      child: Text(
-                        '1',
-                        softWrap: false,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontSize: 11, fontWeight: FontWeight.bold),
+                    Text(
+                      messageModel.dateMessage.toUpperCase(),
+                      style: const TextStyle(
+                        fontSize: 11,
+                        letterSpacing: -0.2,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                  )
-                ]),
-          ],
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Container(
+                      width: 18,
+                      height: 18,
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle, color: Colors.blueAccent),
+                      child: const Center(
+                        child: Text(
+                          '1',
+                          softWrap: false,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 11, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    )
+                  ]),
+            ],
+          ),
         ),
       ),
     );

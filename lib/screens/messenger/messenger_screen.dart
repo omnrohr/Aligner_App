@@ -1,11 +1,12 @@
 import 'package:aligner_app/constants.dart';
-import 'package:aligner_app/screens/messenger/pages/calls/calls_page.dart';
-import 'package:aligner_app/screens/messenger/pages/contacts/contacts_page.dart';
 import 'package:aligner_app/screens/messenger/pages/messages/messages_page.dart';
 import 'package:aligner_app/screens/messenger/pages/notification/notifications_page.dart';
 import 'package:aligner_app/widgets/messages_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'pages/calender/calender_page.dart';
+import 'pages/consultant/consultant_page.dart';
 
 class MessengerScreen extends StatefulWidget {
   const MessengerScreen({Key? key}) : super(key: key);
@@ -31,8 +32,8 @@ class _MessengerScreenState extends State<MessengerScreen>
   final pages = const [
     MessagesPage(),
     NotificationsPage(),
-    CallsPage(),
-    ContactsPage()
+    CalenderPage(),
+    ConsultantPage()
   ];
 
   final titles = const ['Messages', 'Notifications', 'Calls', 'Contacts'];
@@ -79,21 +80,21 @@ class _MessengerScreenState extends State<MessengerScreen>
                 size: 20,
               )),
           BottomNavigationBarItem(
-            label: 'Notifications',
+            label: 'Find doctor',
             icon: Icon(
-              CupertinoIcons.bell_fill,
+              CupertinoIcons.search,
               size: 20,
             ),
           ),
           BottomNavigationBarItem(
-            label: 'Calls',
+            label: 'Calender',
             icon: Icon(
-              CupertinoIcons.phone_fill,
+              CupertinoIcons.calendar,
               size: 20,
             ),
           ),
           BottomNavigationBarItem(
-            label: 'Contacts',
+            label: 'Consultant',
             icon: Icon(
               CupertinoIcons.person_2_fill,
               size: 20,
