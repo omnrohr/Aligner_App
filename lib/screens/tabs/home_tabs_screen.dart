@@ -1,10 +1,11 @@
+import 'package:aligner_app/screens/messenger/messenger_screen.dart';
 import 'package:aligner_app/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 import '../../widgets/tab_widgets.dart';
 import '../home/home_screen.dart';
-import '../messenger/messanger.dart';
+import '../messenger/messenger_screen.dart';
 
 class HomeTabsScreen extends StatefulWidget {
   const HomeTabsScreen({Key? key}) : super(key: key);
@@ -64,12 +65,12 @@ class _HomeTabsScreenState extends State<HomeTabsScreen>
         ],
         onTap: onTabClicked,
         currentIndex: currentTab,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         selectedLabelStyle: TextStyle(
             color: kSplashBGC1, fontWeight: FontWeight.bold, fontSize: 15),
         unselectedLabelStyle: TextStyle(fontSize: 14),
-        unselectedItemColor: Colors.black,
+        unselectedItemColor: Theme.of(context).textTheme.headline5!.color,
       ),
     );
   }

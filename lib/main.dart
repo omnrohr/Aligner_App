@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return MaterialApp(
       theme: lightThemeData(context),
-      // darkTheme: darkThemeData(context),
+      darkTheme: darkThemeData(context),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       routes: routes,

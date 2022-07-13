@@ -14,7 +14,8 @@ class BlackCircleDot extends StatelessWidget {
       width: 4,
       height: 4,
       decoration: BoxDecoration(
-          color: Colors.black, borderRadius: BorderRadius.circular(25)),
+          color: Theme.of(context).textTheme.headline5!.color,
+          borderRadius: BorderRadius.circular(25)),
     );
   }
 }

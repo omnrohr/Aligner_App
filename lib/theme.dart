@@ -4,6 +4,7 @@ import './constants.dart';
 
 ThemeData lightThemeData(BuildContext context) {
   return ThemeData.light().copyWith(
+    cardColor: kRightBGM,
     primaryColor: kLightPrimaryColor,
     scaffoldBackgroundColor: kLightBackGroundColor,
 
@@ -62,6 +63,7 @@ ThemeData darkThemeData(BuildContext context) {
 
     appBarTheme: appBarTheme.copyWith(backgroundColor: kLightPrimaryColor),
     iconTheme: const IconThemeData(color: kDarkPrimaryColor),
+    cardColor: kSplashBGC3,
     // textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
     //     .apply(bodyColor: kDarkPrimaryColor),
     textTheme: const TextTheme(
@@ -91,4 +93,4 @@ ThemeData darkThemeData(BuildContext context) {
   );
 }
 
-const appBarTheme = AppBarTheme(centerTitle: false, elevation: 0);
+const appBarTheme = AppBarTheme(elevation: 0);
